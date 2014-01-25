@@ -1,0 +1,63 @@
+<html manifest="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>AngularJS Form Builder</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+
+        <style>
+        .ng-cloak { display: none; }
+        ul {margin-bottom:10px;}
+        .active{font-size:20px;}
+        </style>
+        
+        
+</head>
+  <body ng-app="angularjsFormBuilderApp">
+    
+
+        <div class="container-narrow">
+            <div class="masthead" ng-controller="MainCtrl">
+                
+                <ul class="nav nav-pills pull-right">
+                    <li ng-class="{active: ($location.path() == '/') }"><a href="#/">Forms List</a></li>
+                    <li ng-class="{active: ($location.path().match('forms/.*/view') ) }"><a href="#/forms/rail-car/view">Form</a></li>
+                    <li><a href="#/login">Login</a></li>
+                </ul>
+            
+            </div>
+            <div class="content" ng-view=""></div>
+        </div>
+
+        <!--  Libs dev
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
+     -->
+        
+        
+     <!--  App Dev
+        <script src="controllers/main.js"></script>
+        <script src="controllers/forms.js"></script>
+     
+        <script src="services/form-service.js"></script>
+        <script src="services/auth-service.js"></script>
+
+        <script src="directives/form-directive.js"></script>
+        <script src="directives/field-directive.js"></script>
+        <script src="templates/templates.js"></script>
+    -->
+    <!--Production-->
+    <script src="libbuild.js"></script>
+    <script src="appbuild.js"></script>
+    <script src="templates/templates.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+CACHE MANIFEST
+# 2010-06-18:v3
+
+# Explicitly cached entries
+index.html
+app.js
+directives/field-directive.js
+directives/form-directive.js
+controllers/forms.js
+controllers/main.js
+services/auth-service.js
+services/form-service.js
+views/form-view.html
+views/forms-list.html
+views/directive-templates/form/form.html
+views/directive-templates/field/test.html
+bower_components/jquery/jquery.js
+bower_components/angular/angular.min.js
+bower_components/angular-resource/angular-resource.js
+bower_components/angular-cookies/angular-cookies.js
+bower_components/angular-route/angular-route.min.js
+libs/angular-cache/angular-cache.js
+
+
+# offline.html will be displayed if the user is offline
+#FALLBACK:
+#/ /offline.html
+
+# All other resources (e.g. sites) require the user to be online. 
+NETWORK:
+*
+
+# Additional resources to cache
+#CACHE:
+#images/logo1.png
+#images/logo2.png
+#images/logo3.png
