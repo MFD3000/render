@@ -182,7 +182,7 @@ angular.module("views/forms-list.html", []).run(["$templateCache", function($tem
   $templateCache.put("views/forms-list.html",
     "<div>\n" +
     "    <ul ng-repeat=\"form in forms\" >\n" +
-    "        <li>Form Name: {{form.form.name}}</li>\n" +
+    "        <li><a href=\"#/forms/{{form.form.id}}/view\">Form Name: {{form.form.name}}</a></li>\n" +
     "        <li>Form Id: {{form.form.id}}</li>\n" +
     "        <li>\n" +
     "            <ul ng-repeat=\"widget in form.form.widgets\">\n" +

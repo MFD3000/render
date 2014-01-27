@@ -434,7 +434,7 @@ angularApp.factory('FormService', function FormService($http, $q, $angularCacheF
 
     var formsJsonPath = 'sample_forms.json';
     var formsAPIPath = 'http://ec2-54-227-190-245.compute-1.amazonaws.com:8888/yms/api/forms/web/?format=json';
-    //var formsAPIPath = '/forms';
+    var formsLocalAPIPath = '/forms';
     
      $angularCacheFactory('formsCache', {
         maxAge: 900000, // Items added to this cache expire after 15 minutes.
@@ -464,6 +464,17 @@ angularApp.factory('FormService', function FormService($http, $q, $angularCacheF
 
                         deferred.resolve(response.all_values_json);
                         
+                    }).error(function(){
+                      $http.get(formsLocalAPIPath).success(function (response) {
+              
+                        console.log('loaded from http' );
+                        console.log(response);
+                        formsCache.put(formsAPIPath, response.all_values_json);
+
+
+                        deferred.resolve(response.all_values_json);
+                        
+                    })  
                     });
             }else{
                 deferred.resolve({error:'no offline data'});
