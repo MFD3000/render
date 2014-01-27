@@ -434,7 +434,7 @@ angularApp.factory('FormService', function FormService($http, $q, $angularCacheF
 
     var formsJsonPath = 'sample_forms.json';
     var formsAPIPath = 'http://ec2-54-227-190-245.compute-1.amazonaws.com:8888/yms/api/forms/web/?format=json';
-    var formsAPIPath = '/forms';
+    //var formsAPIPath = '/forms';
     
      $angularCacheFactory('formsCache', {
         maxAge: 900000, // Items added to this cache expire after 15 minutes.
