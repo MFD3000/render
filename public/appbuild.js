@@ -724,7 +724,7 @@ angularApp.directive('fieldDirective', function ($http, $compile,  $templateCach
 
             switch(type) {
                 case 'textbox':
-                    templateUrl = 'templates/html/directive-templates/field/test.html';
+                    templateUrl = 'templates/html/directive-templates/field/textbox.html';
                     break;
                 case 'email':
                     templateUrl = '/templates/html/directive-templates/field/email.html';

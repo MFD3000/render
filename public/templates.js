@@ -1,4 +1,4 @@
-angular.module('templates-main', ['templates/html/directive-templates/field/checkbox.html', 'templates/html/directive-templates/field/date.html', 'templates/html/directive-templates/field/default.html', 'templates/html/directive-templates/field/dropdown.html', 'templates/html/directive-templates/field/email.html', 'templates/html/directive-templates/field/hidden.html', 'templates/html/directive-templates/field/password.html', 'templates/html/directive-templates/field/radio.html', 'templates/html/directive-templates/field/test.html', 'templates/html/directive-templates/field/textarea.html', 'templates/html/directive-templates/field/textfield.html', 'templates/html/directive-templates/form/form.html', 'views/form-view.html', 'views/forms-list.html', 'views/login.html']);
+angular.module('templates-main', ['templates/html/directive-templates/field/checkbox.html', 'templates/html/directive-templates/field/date.html', 'templates/html/directive-templates/field/default.html', 'templates/html/directive-templates/field/dropdown.html', 'templates/html/directive-templates/field/email.html', 'templates/html/directive-templates/field/hidden.html', 'templates/html/directive-templates/field/password.html', 'templates/html/directive-templates/field/radio.html', 'templates/html/directive-templates/field/textarea.html', 'templates/html/directive-templates/field/textbox.html', 'templates/html/directive-templates/field/textfield.html', 'templates/html/directive-templates/form/form.html', 'views/form-view.html', 'views/forms-list.html', 'views/login.html']);
 
 angular.module("templates/html/directive-templates/field/checkbox.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/html/directive-templates/field/checkbox.html",
@@ -27,6 +27,14 @@ angular.module("templates/html/directive-templates/field/date.html", []).run(["$
 
 angular.module("templates/html/directive-templates/field/default.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/html/directive-templates/field/default.html",
+    "<h3>Default template.  This field has not been wired up</h3>\n" +
+    "<ul ng-switch on=\"field.data.modelId\">\n" +
+    "	<li >Widget Name: {{field.name}}</li>\n" +
+    "	<li >Widget Type: {{field.type}}</li>\n" +
+    "	<li >Widget Id: {{field.id}}</li>\n" +
+    "	<li >Widget Model Id: {{field.data.modelId}}</li>\n" +
+    "	<li ng-switch-when=\"junction\">Testing Nested Directive: Junction</li>\n" +
+    "</ul>\n" +
     "");
 }]);
 
@@ -90,19 +98,6 @@ angular.module("templates/html/directive-templates/field/radio.html", []).run(["
     "<br>");
 }]);
 
-angular.module("templates/html/directive-templates/field/test.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/html/directive-templates/field/test.html",
-    "<ul ng-switch on=\"field.data.modelId\">\n" +
-    "	<li >Widget Name: {{field.name}}</li>\n" +
-    "	<li >Widget Type: {{field.type}}</li>\n" +
-    "	<li >Widget Id: {{field.id}}</li>\n" +
-    "	<li >Widget Model Id: {{field.data.modelId}}</li>\n" +
-    "	<li ng-switch-when=\"junction\">Testing Nested Directive: Junction</li>\n" +
-    "</ul>\n" +
-    "\n" +
-    "  ");
-}]);
-
 angular.module("templates/html/directive-templates/field/textarea.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/html/directive-templates/field/textarea.html",
     "<div class=\"field row\">\n" +
@@ -113,6 +108,20 @@ angular.module("templates/html/directive-templates/field/textarea.html", []).run
     "    </div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("templates/html/directive-templates/field/textbox.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/html/directive-templates/field/textbox.html",
+    "<h3>Textbox Widget: {{field.name}}</h3>\n" +
+    "<ul ng-switch on=\"field.data.modelId\">\n" +
+    "	<li >Widget Name: {{field.name}}</li>\n" +
+    "	<li >Widget Type: {{field.type}}</li>\n" +
+    "	<li >Widget Id: {{field.id}}</li>\n" +
+    "	<li >Widget Model Id: {{field.data.modelId}}</li>\n" +
+    "	<li ng-switch-when=\"junction\">Testing Nested Directive: Junction</li>\n" +
+    "</ul>\n" +
+    "\n" +
+    "  ");
 }]);
 
 angular.module("templates/html/directive-templates/field/textfield.html", []).run(["$templateCache", function($templateCache) {
