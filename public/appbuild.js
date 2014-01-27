@@ -1,15 +1,15 @@
 'use strict';
 
-var angularApp = angular.module('angularjsFormBuilderApp', ['ngCookies','templates-main', 'cordova', 'ngRoute', 'jmdobry.angular-cache']);
+var angularApp = angular.module('angularjsFormBuilderApp', ['ngCookies','templates-main', 'cordova', 'ui.router',  'jmdobry.angular-cache']);
 
 
 
 
-angularApp.config(function ($routeProvider, $httpProvider) {
+angularApp.config(function ($stateProvider, $urlRouterProvider) {
 
     //$httpProvider.defaults.useXDomain = true;
     //delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+/*
     $routeProvider
         .when('/', {
             templateUrl: 'views/forms-list.html',
@@ -26,6 +26,36 @@ angularApp.config(function ($routeProvider, $httpProvider) {
         .otherwise({
             redirectTo: '/'
         });
+*/
+
+//
+  // For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/formsList");
+  //
+  // Now set up the states
+  $stateProvider
+    .state('formsList', {
+      url: "/formslist",
+      templateUrl: 'views/forms-list.html',
+      controller: 'FormsCtrl'
+    })
+    .state('formDetail', {
+      url: '/forms/:id/view',
+      templateUrl: 'views/form-view.html',
+      controller: 'FormCtrl'
+    })
+    .state('login', {
+      url: "/login",
+      templateUrl: 'views/login.html',
+      controller: 'LoginCtrl'
+    })
+    .state('state2.list', {
+      url: "/list",
+        templateUrl: "partials/state2.list.html",
+        controller: function($scope) {
+          $scope.things = ["A", "Set", "Of", "Things"];
+        }
+      })
 
 }).run(function ($rootScope,$templateCache, $http, $angularCacheFactory) {
 
@@ -676,20 +706,20 @@ angular.module('arvak').controller('CameraCtrl', ['$scope', 'camera', function($
 
                      ;'use strict';
 
-angularApp.controller('FormCtrl', function ($scope, FormService, $routeParams, Auth) {
+angularApp.controller('FormCtrl', function ($scope, FormService, $stateParams, Auth) {
     //$scope.form = {};
      console.log($scope.form);
 
         Auth.setCredentials('castillor', 'demo123');
 
     // read form with given id
-    FormService.form($routeParams.id).then(function(form) {
+    FormService.form($stateParams.id).then(function(form) {
         $scope.form = form;
 
     });
 });
 
- angularApp.controller('FormsCtrl', function ($scope, FormService, $routeParams, Auth) {
+ angularApp.controller('FormsCtrl', function ($scope, FormService, $stateParams, Auth) {
     $scope.form = {};
      
         Auth.setCredentials('castillor', 'demo123');
@@ -699,7 +729,7 @@ angularApp.controller('FormCtrl', function ($scope, FormService, $routeParams, A
         $scope.forms = forms;
 
     });
-});;angularApp.controller('LoginCtrl', function ($scope, FormService, $routeParams, Auth) {
+});;angularApp.controller('LoginCtrl', function ($scope, FormService, Auth) {
     $scope.user = {};
     $scope.submit = function(user) {
         Auth.setCredentials(user.name, user.password);
