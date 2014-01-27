@@ -138,7 +138,7 @@ angular.module("templates/html/directive-templates/field/textfield.html", []).ru
 angular.module("templates/html/directive-templates/form/form.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/html/directive-templates/form/form.html",
     "\n" +
-    "<h2>{{form.name}}</h2>\n" +
+    "<h3>Form Name: {{form.name}}</h3>\n" +
     "\n" +
     "<div ng-show=\"!form.submitted\">\n" +
     "    <div class=\"field row\">\n" +
@@ -173,7 +173,21 @@ angular.module("templates/html/directive-templates/form/form.html", []).run(["$t
 
 angular.module("views/form-view.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("views/form-view.html",
+    "  <div class=\"container-narrow\">\n" +
+    "            <div class=\"masthead\" >\n" +
+    "                \n" +
+    "                <ul class=\"nav nav-pills pull-right\">\n" +
+    "                    <li><a ui-sref=\"login\">Login</a></li>\n" +
+    "                    <li ><a ui-sref=\"formsList\"> Back to Forms List</a></li>\n" +
+    "                    \n" +
+    "                    \n" +
+    "                </ul>\n" +
+    "            \n" +
+    "            </div>\n" +
+    "            \n" +
+    "        </div>\n" +
     "\n" +
+    "<h1>Form Detail</h1>\n" +
     "<form-directive form=\"form\"></form-directive><hr>\n" +
     "\n" +
     "\n" +
@@ -189,20 +203,42 @@ angular.module("views/form-view.html", []).run(["$templateCache", function($temp
 
 angular.module("views/forms-list.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("views/forms-list.html",
-    "<div>\n" +
-    "    <ul ng-repeat=\"form in forms\" >\n" +
-    "        <li><a href=\"#/forms/{{form.form.id}}/view\">Form Name: {{form.form.name}}</a></li>\n" +
-    "        <li>Form Id: {{form.form.id}}</li>\n" +
-    "        <li>\n" +
-    "            <ul ng-repeat=\"widget in form.form.widgets\">\n" +
-    "                <li > <field-directive field=\"widget\" ></li>\n" +
-    "            </ul>\n" +
-    "        </li>\n" +
+    "  \n" +
+    "\n" +
+    "  <div class=\"container-narrow\">\n" +
+    "  	<div class=\"masthead\" >\n" +
+    "\n" +
+    "  		<ul class=\"nav nav-pills pull-right\">\n" +
+    "  			<li><a ui-sref=\"login\">Login</a></li>\n" +
     "\n" +
     "\n" +
-    "    </ul>\n" +
+    "  		</ul>\n" +
     "\n" +
-    "</div>\n" +
+    "  	</div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "\n" +
+    "\n" +
+    "  <div>\n" +
+    "  	<h1>Form Viewer</h1>\n" +
+    "  	<ul ng-repeat=\"form in forms\" >\n" +
+    "  		\n" +
+    "\n" +
+    "  		<li><a ui-sref=\"formDetail({id: form.form.id})\">Form Name: {{form.form.name}}</a></li>\n" +
+    "  		<li>Form Id: {{form.form.id}}</li>\n" +
+    "  		<li><a ng-show=\"!showJson\" ng-click=\"showJson = true\">Expand Form</a>\n" +
+    "			<a ng-show=\"showJson\" ng-click=\"showJson = false\">Collapse Form</a><br><br>\n" +
+    "			<div ng-click=\"showJson = false\">\n" +
+    "  			<ul  ng-show=\"showJson\" ng-repeat=\"widget in form.form.widgets\">\n" +
+    "  				<li > <field-directive field=\"widget\" ></li>\n" +
+    "  			</ul>\n" +
+    "  		</div>\n" +
+    "  		</li>\n" +
+    "\n" +
+    "\n" +
+    "  	</ul>\n" +
+    "\n" +
+    "  </div>\n" +
     "");
 }]);
 

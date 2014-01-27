@@ -28,14 +28,14 @@ angularApp.config(function ($stateProvider, $urlRouterProvider) {
         });
 */
 
-//
+ 
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/formsList");
+  $urlRouterProvider.otherwise("/formslist");
   //
   // Now set up the states
   $stateProvider
     .state('formsList', {
-      url: "/formslist",
+      url: '/formslist',
       templateUrl: 'views/forms-list.html',
       controller: 'FormsCtrl'
     })
@@ -45,19 +45,13 @@ angularApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'FormCtrl'
     })
     .state('login', {
-      url: "/login",
+      url: '/login',
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl'
     })
-    .state('state2.list', {
-      url: "/list",
-        templateUrl: "partials/state2.list.html",
-        controller: function($scope) {
-          $scope.things = ["A", "Set", "Of", "Things"];
-        }
-      })
+   
 
-}).run(function ($rootScope,$templateCache, $http, $angularCacheFactory) {
+}).run(function ($rootScope, $state, $stateParams, $http, $angularCacheFactory) {
 
 //Here is a config for a default cache and http replacement.
 
@@ -69,6 +63,13 @@ angularApp.config(function ($stateProvider, $urlRouterProvider) {
     //});
 
     //$http.defaults.cache = $angularCacheFactory.get('defaultCache');
+
+ //Set rootscope state so we have access to current state everywhere.
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+
+
+
 });
 ;'use strict';
 
@@ -707,8 +708,7 @@ angular.module('arvak').controller('CameraCtrl', ['$scope', 'camera', function($
                      ;'use strict';
 
 angularApp.controller('FormCtrl', function ($scope, FormService, $stateParams, Auth) {
-    //$scope.form = {};
-     console.log($scope.form);
+ 
 
         Auth.setCredentials('castillor', 'demo123');
 
@@ -720,7 +720,7 @@ angularApp.controller('FormCtrl', function ($scope, FormService, $stateParams, A
 });
 
  angularApp.controller('FormsCtrl', function ($scope, FormService, $stateParams, Auth) {
-    $scope.form = {};
+   $scope.form = {};
      
         Auth.setCredentials('castillor', 'demo123');
 
@@ -740,11 +740,6 @@ angularApp.controller('FormCtrl', function ($scope, FormService, $stateParams, A
 
     
 });;'use strict';
-
-angularApp.controller('MainCtrl', function ($scope,  $location) {
- $scope.$location = $location;
-});
-;'use strict';
 
 angularApp.directive('fieldDirective', function ($http, $compile,  $templateCache) {
 

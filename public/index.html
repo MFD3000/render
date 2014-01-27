@@ -1,4 +1,4 @@
-<html manifest="">
+<html manifest="mobile.appcache">
 
   <head>
     <meta charset="utf-8">
@@ -19,21 +19,9 @@
         
 </head>
   <body ng-app="angularjsFormBuilderApp">
-    
+    <section ui-view>
 
-        <div class="container-narrow">
-            <div class="masthead" ng-controller="MainCtrl">
-                
-                <ul class="nav nav-pills pull-right">
-                    <li ng-class="{active: ($location.path() == '/') }"><a ui-sref="formsList">Forms List</a></li>
-                    <li ng-class="{active: ($location.path().match('forms/.*/view') ) }"><a ui-sref="formDetail">Form</a></li>
-                    <li><a ui-sref="login">Login</a></li>
-                </ul>
-            
-            </div>
-            <section ui-view>
-        </div>
-
+      
         <!--  Libs dev
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
