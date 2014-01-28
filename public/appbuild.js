@@ -1,11 +1,12 @@
 'use strict';
 
-var angularApp = angular.module('angularjsFormBuilderApp', ['ngCookies','templates-main', 'cordova', 'ui.router',  'jmdobry.angular-cache']);
+var angularApp = angular.module('angularjsFormBuilderApp', ['ngCookies','templates-main', 'cordova', 'ngRoute', 'ui.router',  'jmdobry.angular-cache']);
 
 
 
 
 angularApp.config(function ($stateProvider, $urlRouterProvider) {
+//    angularApp.config(function ($stateProvider, $routeProvider) {
 
     //$httpProvider.defaults.useXDomain = true;
     //delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -52,6 +53,7 @@ angularApp.config(function ($stateProvider, $urlRouterProvider) {
    
 
 }).run(function ($rootScope, $state, $stateParams, $http, $angularCacheFactory) {
+   // }).run(function ($rootScope,  $http, $angularCacheFactory) {
 
 //Here is a config for a default cache and http replacement.
 
@@ -65,8 +67,8 @@ angularApp.config(function ($stateProvider, $urlRouterProvider) {
     //$http.defaults.cache = $angularCacheFactory.get('defaultCache');
 
  //Set rootscope state so we have access to current state everywhere.
-  $rootScope.$state = $state;
-  $rootScope.$stateParams = $stateParams;
+  //$rootScope.$state = $state;
+  //$rootScope.$stateParams = $stateParams;
 
 
 
