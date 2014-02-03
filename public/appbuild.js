@@ -865,7 +865,8 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
         templateUrl: 'mapping/views/gmap.html',
         controller: ['$scope', '$http', 'mapping2', function($scope, $http, mapping2) {
              
-            $scope.bearingTo = 10;
+            $scope.bearingTo = 0;
+            $scope.myBearing = 0;
              $scope.getCoords = function(dan){
                 
                 $scope.markerResult = mapping2.getMarker('userMarker').position.lat();
@@ -882,9 +883,9 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             } 
 
             $scope.updateBearing = function(){
-                $scope.myBearing = 0;
+                
                 compass.getCurrent(function(heading){
-                    console.log('hi');
+                    
                     $scope.myBearing = heading.magneticHeading;
                 }) 
                 var position1 = mapping2.getMarker('userMarker').position;
@@ -968,8 +969,8 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
             mapping2.map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapping2.model);
-            console.log(mapping2.model.center);
-
+            
+/*
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = new google.maps.LatLng(position.coords.latitude,
@@ -981,7 +982,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
                         model.setDirections();
                     });
             }
-
+*/
 
 
         }

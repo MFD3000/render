@@ -277,6 +277,7 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
     "<div>Distance:  {{distance}}</div>\n" +
     "<div>bearing: {{bearing}}</div>\n" +
     "<div>Bearing Difference: {{bearingDifference}}</div>\n" +
+    "<div>My Bearing: {{myBearing}}</div>\n" +
     "\n" +
     "<div class=\"col-lg-9\" id=\"map-canvas\" >");
 }]);
@@ -290,39 +291,11 @@ angular.module("mapping/views/map.html", []).run(["$templateCache", function($te
 angular.module("mapping/views/mapgeo.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mapping/views/mapgeo.html",
     " <div id=\"wrap\">\n" +
-    "        <!-- Fixed navbar -->\n" +
-    "        <div class=\"navbar navbar-fixed-top\">\n" +
-    "            <div class=\"container\">\n" +
-    "                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".nav-collapse\">\n" +
-    "                    <span class=\"icon-bar\"></span>\n" +
-    "                    <span class=\"icon-bar\"></span>\n" +
-    "                    <span class=\"icon-bar\"></span>\n" +
-    "                </button>\n" +
-    "                <a class=\"navbar-brand\" href=\"#\">My Directions</a>\n" +
-    "                <div class=\"nav-collapse collapse\">\n" +
-    "                    <ul class=\"nav navbar-nav\">\n" +
-    "                        <li class=\"active\"><a href=\"#\"><i class=\"icon-home\"></i>Home</a></li>\n" +
-    "\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "                <!--/.nav-collapse -->\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "     \n" +
     "        <div class=\"container\" >\n" +
     "\n" +
     "             <div gmap=\"gmap\"></div>\n" +
-    "<div id=\"map-canvas\"></div>\n" +
-    "\n" +
-    "             \n" +
-    "  {{gmap}}\n" +
     "        </div>\n" +
-    "        <div id=\"footer\" class=\"navbar navbar-fixed-bottom\">\n" +
-    "            <div class=\"navbar-inner navbar-content-center\">\n" +
-    "                <div class='container foot-text'>\n" +
-    "                    <span class=\"pull-left\">Copyright © 2013 EricPanorel.Net | All Rights\n" +
-    "                    Reserved</span>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "        \n" +
     "    </div>");
 }]);
