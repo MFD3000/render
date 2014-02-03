@@ -867,6 +867,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
              
             $scope.bearingTo = 0;
             $scope.myBearing = 0;
+            $scope.compassActive = "false";
              $scope.getCoords = function(dan){
                 
                 $scope.markerResult = mapping2.getMarker('userMarker').position.lat();
@@ -885,8 +886,9 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             $scope.updateBearing = function(){
                 
                 compass.getCurrent(function(heading){
-                    
+                    $scope.compassActive = "true";
                     $scope.myBearing = heading.magneticHeading;
+                    $scope.$apply();
                 }) 
                 var position1 = mapping2.getMarker('userMarker').position;
                 var position2 = mapping2.getMarker('secondGuy').position;

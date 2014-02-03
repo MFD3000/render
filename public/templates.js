@@ -278,6 +278,7 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
     "<div>bearing: {{bearing}}</div>\n" +
     "<div>Bearing Difference: {{bearingDifference}}</div>\n" +
     "<div>My Bearing: {{myBearing}}</div>\n" +
+    "<div>{{compassActive}}</div>\n" +
     "\n" +
     "<div class=\"col-lg-9\" id=\"map-canvas\" >");
 }]);
