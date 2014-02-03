@@ -1,28 +1,51 @@
-<html manifest="mobile.appcache">
+<html manifest="">
 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>AngularJS Form Builder</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
-        <style>
-        .ng-cloak { display: none; }
-        ul {margin-bottom:10px;list-style-type: none;}
-        
-        .active{font-size:20px;}
-        </style>
-        
-        
-</head>
-  <body ng-app="angularjsFormBuilderApp">
-    <section ui-view></section>
-        <section ng-view></section>
+    <style>
+    .ng-cloak { display: none; }
 
-      
+    ul {margin-bottom:10px;list-style-type: none;}
+
+    .active{font-size:20px;}
+    #map-canvas{
+        position:relative;
+        width: 100%;
+        height: 100%;      
+    }
+
+    .arrow {
+        position:absolute;
+        left:70px;
+        top:200px;
+        z-index:1000;
+        display: block;
+        background-image: url("assets/compass.png");
+        background-size: 100%;
+
+        width: 100px;
+        height: 105px;
+
+    }
+    </style>
+
+
+</head>
+<body ng-app="angularjsFormBuilderApp">
+    <a ui-sref="formsList"> Forms Demo</a>
+    <a ui-sref="mapgeo"> Maps Demo</a>
+    <section ui-view></section>
+    <section ng-view></section>
+
+
         <!--  Libs dev
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
@@ -30,24 +53,56 @@
         <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
-     -->
-        
-        
-     <!--  App Dev
-        <script src="controllers/main.js"></script>
+     <script src="local_components/angular-ui-router.js"></script>
+ -->
+
+
+     <!--  App Dev 
+ <script src="http://frozen-crag-2179.herokuapp.com/libbuild.js"></script>
+      <script src="libs/underscore/underscore-min.js"></script>
+
+     <script src="app.js"></script>
         <script src="controllers/forms.js"></script>
      
+        <script src="services/arvak-services.js"></script>
         <script src="services/form-service.js"></script>
         <script src="services/auth-service.js"></script>
 
         <script src="directives/form-directive.js"></script>
         <script src="directives/field-directive.js"></script>
-        <script src="templates/templates.js"></script>
+        
+        <script src="mapping/services/compass.js"></script>
+        <script src="mapping/services/geotracking.js"></script>
+        <script src="mapping/services/mapping.js"></script>
+        <script src="mapping/services/mapping2.js"></script>
+        <script src="mapping/services/geomath.js"></script>
+        <script src="mapping/services/geometry.js"></script>
+        <script src="mapping/controllers/map.js"></script>
+        
+        <script src="mapping/directives/gmap.js"></script>
+        <script src="mapping/directives/compass.js"></script>
+        <script src="mapping/scripts/mapping/new/deferred.js"></script>
+        <script src="mapping/scripts/mapping/new/geometry.js"></script>
+        <script src="mapping/scripts/mapping/new/geometryRenderer.js"></script>
+        <script src="mapping/scripts/mapping/new/googleMapsWrapper.js"></script>
+        <script src="mapping/scripts/mapping/new/mapWidget.js"></script>
+        <script src="mapping/scripts/mapping/new/rolloverHandlers.js"></script>
     -->
-    <!--Production-->
+
+
+    <!--Production remote
     <script src="http://frozen-crag-2179.herokuapp.com/libbuild.js"></script>
     <script src="http://frozen-crag-2179.herokuapp.com/appbuild.js"></script>
     <script src="http://frozen-crag-2179.herokuapp.com/templates.js"></script>
+-->
+<!--Production local -->
+<script src="libbuild.js"></script>
+<script src="appbuild.js"></script>
+<script src="templates.js"></script>
 
-    </body>
+<script type="text/javascript"
+src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true">
+</script>
+
+</body>
 </html>
