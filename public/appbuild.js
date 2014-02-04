@@ -880,22 +880,22 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
 
             function onSuccess(heading) {
-                $scope.bearingDifference = 'Heading: ' + heading.magneticHeading;
+                $scope.bearingDifference = 'Heading: ' + heading.compassBearing;
             }
 
     // onError: Failed to get the heading
     //
     function onError(compassError) {
-        $scope.bearingDifference = 'Compass Error: ' + compassError.code;
+        $scope.compassBearing = 'Compass Error: ' + compassError.code;
     }
 
 
     $scope.updateBearing = function(){
 
         compass.getCurrent(function(heading){
-            $scope.compassActive = "true";
-            $scope.magneticBearing = heading.magneticHeading;
-            $scope.$apply();
+            $scope.compassActive = "true"  + heading.magneticHeading;
+            $scope.compassBearing = heading.magneticHeading;
+            //$scope.$apply();
         }) 
 
                 /*
@@ -941,8 +941,9 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
             
             cordovaReady(compass.subscribe(function(heading){
-                $scope.compassBearing = heading.magneticHeading;
-                console.log("geo update");
+                scope.compassActive = "scanning "  + heading.magneticHeading;
+                scope.compassBearing = heading.magneticHeading;
+                console.log("compass update");
                 scope.$apply();
 
             }));
