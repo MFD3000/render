@@ -915,13 +915,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
       //            var initialize = function(){
 
-                var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8
-        };
-        console.log("map made");
-        scope.map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
+              
 //}
 
         // google.maps.event.addDomListener(window, 'load', initialize);
@@ -931,17 +925,21 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
             $rootScope.$on('test', function(event, msg) {
 
-                var getter = $parse(attrs.gmap),
-                setter = getter.assign;
+  
+      //  scope.map = new google.maps.Map(document.getElementById("map-canvas"),
+        //    mapOptions);
+
+              //  var getter = $parse(attrs.gmap),
+                //setter = getter.assign;
 
 
-                mapping2.model = scope.gmap;
+                //mapping2.model = scope.gmap;
 
             //model.options = ['Driving', 'Walking', 'Bicycling', 'Transit'];
             //model.selectedOption = 'Driving';
             //model.totalKm = 0;
             
-            setter(scope, mapping2.model);
+          //  setter(scope, mapping2.model);
             //scope.model = model;
 
 
@@ -1003,8 +1001,15 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
         function gInit() {
 
+            var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        console.log("map made");
+
+
             mapping2.map = new google.maps.Map(document.getElementById("map-canvas"),
-                mapping2.model);
+                mapOptions);
             /*
             scope.userMarker = mapping2.addMarker("userMarker", "userMarker", mapping2.model.center);
             mapping2.addMarker("userMarker", "newTask", new google.maps.LatLng(40.875638,-81.395184));
@@ -2195,7 +2200,7 @@ angularApp.controller('GMapCtrl',
 
        
 
-/*
+
         cordovaReady(geotracking.getCurrent( function(geo) {
             
             console.log("building map");
@@ -2207,7 +2212,7 @@ angularApp.controller('GMapCtrl',
               $rootScope.$broadcast('test', mapConfig);
 
         }));
-              */
+              
 
     });
 
