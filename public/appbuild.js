@@ -1000,12 +1000,19 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
                 scope.compassActive = "scanning " ;
                 scope.compassBearing = heading.magneticHeading;
                 
-var position1 = mapping2.getMarker('userMarker').position;
+                var position1 = mapping2.getMarker('userMarker').position;
                 var position2 = mapping2.getMarker('newTask').position;
                 scope.distance = geomath.calculateDistance(position1,position2);
-                scope.trueBearing = geomath.calculateBearing(position1,position2);
-                scope.bearingDifference =  scope.trueBearing - scope.compassBearing ;
+                var bearingTo = geomath.calculateBearing(position1,position2);
+                if (bearingTo < 0) {
+                    bearingTo = bearingTo + 360;
+                }
+                scope.bearingDifference =  bearingTo - scope.compassBearing ;
                 
+                if (scope.bearingDifference < 0) {
+                    scope.bearingDifference = scope.bearingDifference + 360;
+                }
+
 
                 scope.$apply();
 
