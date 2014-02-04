@@ -279,7 +279,7 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
     "<div>{{compassActive}}</div>\n" +
     "\n" +
     "<div id=\"gmap-container\">\n" +
-    "<compass class=\"arrow\" direction=\"{{compassBearing}}\"></compass>\n" +
+    "<compass class=\"arrow\" direction=\"{{bearingDifference}}\"></compass>\n" +
     "<div class=\"col-lg-9\" id=\"map-canvas\" ></div>\n" +
     "</div>");
 }]);

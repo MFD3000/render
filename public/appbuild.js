@@ -940,14 +940,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             }
 
             
-            cordovaReady(compass.subscribe(function(heading){
-                scope.compassActive = "scanning "  + heading.magneticHeading;
-                scope.compassBearing = heading.magneticHeading;
-                console.log("compass update");
-                scope.$apply();
 
-            }));
-            cordovaReady(compass.start());
 
             
 
@@ -1001,6 +994,23 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             scope.userMarker = mapping2.addMarker("userMarker", "userMarker", mapping2.model.center);
             mapping2.addMarker("userMarker", "newTask", new google.maps.LatLng(40.875638,-81.395184));
             scope.addPolygon();
+
+
+              cordovaReady(compass.subscribe(function(heading){
+                scope.compassActive = "scanning " ;
+                scope.compassBearing = heading.magneticHeading;
+                
+var position1 = mapping2.getMarker('userMarker').position;
+                var position2 = mapping2.getMarker('newTask').position;
+                scope.distance = geomath.calculateDistance(position1,position2);
+                scope.trueBearing = geomath.calculateBearing(position1,position2);
+                scope.bearingDifference =  $scope.trueBearing - $scope.compassBearing ;
+                
+
+                scope.$apply();
+
+            }));
+            cordovaReady(compass.start());
 
             if ("geolocation" in navigator) {
 
