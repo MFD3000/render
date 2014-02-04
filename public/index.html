@@ -7,6 +7,19 @@
     <meta name="description" content="">
    
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
@@ -44,6 +57,7 @@
 
 </head>
 <body ng-app="angularjsFormBuilderApp">
+    <div id="map-canvas"></div>
     <a ui-sref="formsList"> Forms Demo</a>
     <a ui-sref="mapgeo"> Maps Demo</a>
     <section ui-view></section>
@@ -99,14 +113,12 @@
     <script src="http://frozen-crag-2179.herokuapp.com/appbuild.js"></script>
     <script src="http://frozen-crag-2179.herokuapp.com/templates.js"></script>
 -->
-<!--Production local -->
+<!--Production local 
 <script src="libbuild.js"></script>
 <script src="appbuild.js"></script>
 <script src="templates.js"></script>
+-->
 
-<script type="text/javascript"
-src="http://maps.googleapis.com/maps/api/js?sensor=true">
-</script>
 
 </body>
 </html>
