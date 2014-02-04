@@ -990,7 +990,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
             mapping2.map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapping2.model);
-            
+            /*
             scope.userMarker = mapping2.addMarker("userMarker", "userMarker", mapping2.model.center);
             mapping2.addMarker("userMarker", "newTask", new google.maps.LatLng(40.875638,-81.395184));
             scope.addPolygon();
