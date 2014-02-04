@@ -285,9 +285,9 @@ angular.module("mapping/views/mapgeo.html", []).run(["$templateCache", function(
   $templateCache.put("mapping/views/mapgeo.html",
     "\n" +
     "     \n" +
-    "        <div class=\"container\" >\n" +
+    " <div id=\"map-canvas\"></div>\n" +
     "\n" +
     "             <div gmap=\"gmap\"></div>\n" +
-    "        </div>\n" +
+    " \n" +
     " ");
 }]);

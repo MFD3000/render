@@ -2172,25 +2172,37 @@ angularApp.controller('GMapCtrl',
                 toastr.error(status);
             }
         };
+
         */
 
 
+  var initialize = function(){
 
-        cordovaReady(geotracking.getCurrent( function(geo) {
-            
-            console.log("building map");
-                 var mapOptions = {
+                var mapOptions = {
           center: new google.maps.LatLng(-34.397, 150.644),
           zoom: 8
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-        /*
+}
+
+         google.maps.event.addDomListener(window, 'load', initialize);
+
+       
+
+/*
+        cordovaReady(geotracking.getCurrent( function(geo) {
+            
+            console.log("building map");
+         
+        
        var mapConfig = mapping2.create("map-canvas", geo);
        $scope.gmap = mapConfig;
              //$scope.$apply();
               $rootScope.$broadcast('test', mapConfig);
-              */
+
         }));
+              */
+
     });
 
