@@ -1,4 +1,4 @@
-angular.module('templates-main', ['templates/html/directive-templates/field/checkbox.html', 'templates/html/directive-templates/field/date.html', 'templates/html/directive-templates/field/default.html', 'templates/html/directive-templates/field/dropdown.html', 'templates/html/directive-templates/field/email.html', 'templates/html/directive-templates/field/hidden.html', 'templates/html/directive-templates/field/password.html', 'templates/html/directive-templates/field/radio.html', 'templates/html/directive-templates/field/textarea.html', 'templates/html/directive-templates/field/textbox.html', 'templates/html/directive-templates/field/textfield.html', 'templates/html/directive-templates/form/form.html', 'views/form-view.html', 'views/forms-list.html', 'views/login.html', 'mapping/views/gmap.html', 'mapping/views/map.html', 'mapping/views/mapgeo.html']);
+angular.module('templates-main', ['templates/html/directive-templates/field/checkbox.html', 'templates/html/directive-templates/field/date.html', 'templates/html/directive-templates/field/default.html', 'templates/html/directive-templates/field/dropdown.html', 'templates/html/directive-templates/field/email.html', 'templates/html/directive-templates/field/hidden.html', 'templates/html/directive-templates/field/password.html', 'templates/html/directive-templates/field/radio.html', 'templates/html/directive-templates/field/textarea.html', 'templates/html/directive-templates/field/textbox.html', 'templates/html/directive-templates/field/textfield.html', 'templates/html/directive-templates/form/form.html', 'views/form-view.html', 'views/forms-list.html', 'views/login.html', 'mapping/views/gmap.html', 'mapping/views/mapgeo.html']);
 
 angular.module("templates/html/directive-templates/field/checkbox.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/html/directive-templates/field/checkbox.html",
@@ -262,9 +262,6 @@ angular.module("views/login.html", []).run(["$templateCache", function($template
 angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mapping/views/gmap.html",
     "\n" +
-    "\n" +
-    " \n" +
-    "\n" +
     "<button ng-click=\"addMarker();\">Add Marker</button>\n" +
     "<button ng-click=\"removeMarker();\">Remove Marker</button>\n" +
     "<button ng-click=\"addPolygon();\">Add Polygon</button>\n" +
@@ -280,24 +277,17 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
     "\n" +
     "<div id=\"gmap-container\">\n" +
     "<compass class=\"arrow\" direction=\"{{bearingDifference}}\"></compass>\n" +
-    "<div class=\"col-lg-9\" id=\"map-canvas\" ></div>\n" +
+    "<div id=\"map-canvas\" ></div>\n" +
     "</div>");
-}]);
-
-angular.module("mapping/views/map.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("mapping/views/map.html",
-    "<div id=\"map-canvas\" class=\"map\" >hh</div>\n" +
-    "<div class=\"map unavailable\" state=\"mapUnavailable\">maps not available, please check your internet connection</div>");
 }]);
 
 angular.module("mapping/views/mapgeo.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mapping/views/mapgeo.html",
-    " <div id=\"wrap\">\n" +
+    "\n" +
     "     \n" +
     "        <div class=\"container\" >\n" +
     "\n" +
     "             <div gmap=\"gmap\"></div>\n" +
     "        </div>\n" +
-    "        \n" +
-    "    </div>");
+    " ");
 }]);
