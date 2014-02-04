@@ -288,7 +288,7 @@ angular.module("mapping/views/mapgeo.html", []).run(["$templateCache", function(
     "     \n" +
     " \n" +
     "\n" +
-    "             <div gmap=\"gmap\"></div>\n" +
+    "             <div gmap></div>\n" +
     " \n" +
     " ");
 }]);
