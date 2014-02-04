@@ -2176,7 +2176,7 @@ angularApp.controller('GMapCtrl',
         */
 
 
-  var initialize = function(){
+ // var initialize = function(){
 
                 var mapOptions = {
           center: new google.maps.LatLng(-34.397, 150.644),
@@ -2184,9 +2184,9 @@ angularApp.controller('GMapCtrl',
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-}
+//}
 
-         google.maps.event.addDomListener(window, 'load', initialize);
+  //       google.maps.event.addDomListener(window, 'load', initialize);
 
        
 
