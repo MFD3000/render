@@ -1004,7 +1004,7 @@ var position1 = mapping2.getMarker('userMarker').position;
                 var position2 = mapping2.getMarker('newTask').position;
                 scope.distance = geomath.calculateDistance(position1,position2);
                 scope.trueBearing = geomath.calculateBearing(position1,position2);
-                scope.bearingDifference =  $scope.trueBearing - $scope.compassBearing ;
+                scope.bearingDifference =  scope.trueBearing - scope.compassBearing ;
                 
 
                 scope.$apply();
