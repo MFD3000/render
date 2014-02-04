@@ -926,7 +926,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
          google.maps.event.addDomListener(window, 'load', initialize);
 
-                scope.$watch(scope.map, function(){console.log('In directive map loaded');})
+                scope.$watch(scope.map, function(){console.log('In directive maps loaded');})
 
 
             $rootScope.$on('test', function(event, msg) {
