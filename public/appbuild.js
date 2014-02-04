@@ -854,7 +854,7 @@ angularApp.directive('formDirective', function () {
     }
 });;"use strict";
 
-angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope, mapping2, compass, geomath) {
+angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope, mapping2, compass, geomath,geotracking, cordovaReady) {
     var counter = 0,
     prefix = '__ep_gmap_';
     
@@ -865,29 +865,23 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
         templateUrl: 'mapping/views/gmap.html',
         controller: ['$scope', '$http', 'mapping2', function($scope, $http, mapping2) {
 
-            $scope.bearingTo = 0;
-            $scope.myBearing = 0;
+            $scope.trueBearing = 0;
+            $scope.compassBearing = 0;
             $scope.compassActive = "false";
-            $scope.getCoords = function(dan){
+           
+            
 
-                $scope.markerResult = mapping2.getMarker('userMarker').position.lat();
-                
-            }
-            $scope.changeDirection = function(){
-                $scope.bearingTo = 5;
-            }
+            $scope.addTask = function(){
 
-            $scope.addSecond = function(){
-
-                mapping2.addMarker("userMarker", "secondGuy", new google.maps.LatLng(40.875638,
-                 -81.395184));
+                mapping2.addMarker("userMarker", "newTask", new google.maps.LatLng(40.875638,
+                   -81.395184));
             } 
 
 
 
             function onSuccess(heading) {
                 $scope.bearingDifference = 'Heading: ' + heading.magneticHeading;
-}
+            }
 
     // onError: Failed to get the heading
     //
@@ -895,19 +889,14 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
         $scope.bearingDifference = 'Compass Error: ' + compassError.code;
     }
 
+
     $scope.updateBearing = function(){
 
         compass.getCurrent(function(heading){
             $scope.compassActive = "true";
-            $scope.myBearing = heading.magneticHeading;
+            $scope.magneticBearing = heading.magneticHeading;
             $scope.$apply();
         }) 
-
-
-
-        navigator.compass.getCurrentHeading(onSuccess, onError);
-
-
 
                 /*
                 var position1 = mapping2.getMarker('userMarker').position;
@@ -940,6 +929,8 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             setter(scope, mapping2.model);
             //scope.model = model;
 
+
+
             if ($window.google && $window.google.maps) {
                 console.log("loading map");
                 gInit();
@@ -947,6 +938,20 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
                 console.log("not loading map");
                 injectGoogle();
             }
+
+            
+            cordovaReady(compass.subscribe(function(heading){
+                $scope.compassBearing = heading.magneticHeading;
+                console.log("geo update");
+                scope.$apply();
+
+            }));
+            cordovaReady(compass.start());
+
+            
+
+
+
         });
 
 
@@ -992,8 +997,24 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
             mapping2.map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapping2.model);
             
-/*
+            scope.userMarker = mapping2.addMarker("userMarker", "userMarker", mapping2.model.center);
+            mapping2.addMarker("userMarker", "newTask", new google.maps.LatLng(40.875638,-81.395184));
+            scope.addPolygon();
+
             if ("geolocation" in navigator) {
+
+                 geotracking.subscribe(function(geo) {
+          
+            console.log("geo update");
+            
+            
+            mapping2.moveMarkerTo(scope.userMarker, geo.coords);
+            scope.$apply();
+        });
+        geotracking.start();
+        }
+
+        /*
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = new google.maps.LatLng(position.coords.latitude,
                        position.coords.longitude);
@@ -1004,7 +1025,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
                         model.setDirections();
                     });
             }
-            */
+          */  
 
 
         }
@@ -1949,6 +1970,11 @@ console.log("map built");
         
     }
 
+     this.moveMarkerTo = function(ref, coords) {
+        ref.marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude));
+        ref.coords = coords;
+    }
+
 
 
      /**
@@ -2099,47 +2125,10 @@ angularApp.controller('MapCtrl', function MapCtrl($scope,cordovaReady, geotracki
      * init controller
      */
     $scope.init = function() {
-        /*$scope.$on('$destroy', function () {
-            $scope.initialized = false;
-            geotracker.stop();
-            golfer.stop();
-        });*/
+      
 
+       
 
-  //Build map
-
-        geotracking.getCurrent( function(geo) {
-            console.log(geo);
-
-            mapping.create("map-canvas", geo);
-            $scope.userMarker = mapping.addMarker('userMarker', 'userMarker', geo.coords);
-            
-            
-
-            $scope.$apply();
-        });
-
-        geotracking.subscribe(function(geo) {
-          
-            console.log('hey');
-            mapping.moveMarkerTo($scope.userMarker, geo.coords);
-            $scope.$apply();
-        });
-        geotracking.start();
-
-/*
-        
-        geotracker.subscribe(function(geo) {
-            if (!$scope.initialized) {
-                $scope.initializeGreen(geo);
-            }
-            
-
-            mapping.moveMarkerTo($scope.player, geo.coords);
-            $scope.$apply();
-        });
-        geotracker.start();
-        */
     }
 
 

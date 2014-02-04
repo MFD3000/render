@@ -263,24 +263,25 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
   $templateCache.put("mapping/views/gmap.html",
     "\n" +
     "\n" +
-    " <compass class=\"arrow\" direction=\"{{bearingTo}}\"></compass>\n" +
+    " \n" +
     "\n" +
     "<button ng-click=\"addMarker();\">Add Marker</button>\n" +
     "<button ng-click=\"removeMarker();\">Remove Marker</button>\n" +
     "<button ng-click=\"addPolygon();\">Add Polygon</button>\n" +
     "<button ng-click=\"removePolygon();\">Remove Polygon</button>\n" +
-    "<button ng-click=\"addSecond();\">Second</button>\n" +
-    "<button ng-click=\"getCoords('userMarker');\">Get</button>\n" +
-    "<button ng-click=\"changeDirection();\">Change direction</button>\n" +
+    "<button ng-click=\"addTask();\">Add Task Location</button>\n" +
     "<button ng-click=\"updateBearing();\">Calculate</button>\n" +
     "<input type=\"text\" ng-model=\"bearingTo\"></input>\n" +
     "<div>Distance:  {{distance}}</div>\n" +
-    "<div>bearing: {{bearing}}</div>\n" +
+    "<div>True Bearing: {{trueBearing}}</div>\n" +
+    "<div>Magnetic Bearing: {{compassBearing}}</div>\n" +
     "<div>Bearing Difference: {{bearingDifference}}</div>\n" +
-    "<div>My Bearing: {{myBearing}}</div>\n" +
     "<div>{{compassActive}}</div>\n" +
     "\n" +
-    "<div class=\"col-lg-9\" id=\"map-canvas\" >");
+    "<div id=\"gmap-container\">\n" +
+    "<compass class=\"arrow\" direction=\"{{compassBearing}}\"></compass>\n" +
+    "<div class=\"col-lg-9\" id=\"map-canvas\" ></div>\n" +
+    "</div>");
 }]);
 
 angular.module("mapping/views/map.html", []).run(["$templateCache", function($templateCache) {
