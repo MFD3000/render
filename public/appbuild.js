@@ -913,6 +913,21 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
         link: function (scope, element, attrs, controller) {
 
 
+      //            var initialize = function(){
+
+                var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        console.log("map made");
+        scope.map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+//}
+
+        // google.maps.event.addDomListener(window, 'load', initialize);
+
+                scope.$watch(scope.map, function(){console.log('In directive map loaded');})
+
 
             $rootScope.$on('test', function(event, msg) {
 
@@ -932,7 +947,7 @@ angular.module('cordova').directive('gmap', function ($window,$parse, $rootScope
 
 
             if ($window.google && $window.google.maps) {
-                console.log("loading map");
+                console.log("loading map init");
                 gInit();
             } else {
                 console.log("not loading map");
@@ -2176,17 +2191,7 @@ angularApp.controller('GMapCtrl',
         */
 
 
- // var initialize = function(){
 
-                var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-//}
-
-  //       google.maps.event.addDomListener(window, 'load', initialize);
 
        
 

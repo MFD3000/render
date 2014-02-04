@@ -277,15 +277,16 @@ angular.module("mapping/views/gmap.html", []).run(["$templateCache", function($t
     "\n" +
     "<div id=\"gmap-container\">\n" +
     "<compass class=\"arrow\" direction=\"{{bearingDifference}}\"></compass>\n" +
-    "<div id=\"map-canvas\" ></div>\n" +
-    "</div>");
+    "\n" +
+    "</div>\n" +
+    "<div id=\"map-canvas\" ></div>");
 }]);
 
 angular.module("mapping/views/mapgeo.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mapping/views/mapgeo.html",
     "\n" +
     "     \n" +
-    " <div id=\"map-canvas\"></div>\n" +
+    " \n" +
     "\n" +
     "             <div gmap=\"gmap\"></div>\n" +
     " \n" +
