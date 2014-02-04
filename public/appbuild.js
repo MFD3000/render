@@ -2158,7 +2158,7 @@ angularApp.controller('MapCtrl', function MapCtrl($scope,cordovaReady, geotracki
 
 
 angularApp.controller('GMapCtrl',
-    function GMapCtrl($scope, mapping2, geotracking, $rootScope) {
+    function GMapCtrl($scope, mapping2, geotracking, $rootScope, cordovaReady) {
         
         /*
         $scope.gmap = {
@@ -2176,13 +2176,21 @@ angularApp.controller('GMapCtrl',
 
 
 
-        geotracking.getCurrent( function(geo) {
+        cordovaReady(geotracking.getCurrent( function(geo) {
             
             console.log("building map");
+                 var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        /*
        var mapConfig = mapping2.create("map-canvas", geo);
        $scope.gmap = mapConfig;
              //$scope.$apply();
               $rootScope.$broadcast('test', mapConfig);
-        });
+              */
+        }));
     });
 
